@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>게시글 상세</h1>
+
+    작성자: <span th:text="${qwer.userDto.nickname}"></span><br>
+    제목: <span th:text="${qwer.articleDto.title}"></span><br>
+    조회수: <span th:text="${qwer.articleDto.read_count}"></span><br>
+    작성일: <span th:text="${#dates.format(qwer.articleDto.created_at, 'yyyy-MM-dd')}"></span><br>
+    내용: <br>
+    <div th:utext="${qwer.articleDto.content}"></div>
+
+    <br>
+    <a href="./mainPage">목록으로</a>
+
+    <span th:if="${session.sessionUserInfo != null and session.sessionUserInfo.id == qwer.articleDto.user_id}">
+        <a th:href="@{./deleteArticleProcess(id=${qwer.articleDto.id})}">삭제</a>
+        <a th:href="@{./updateArticlePage(id=${qwer.articleDto.id})}">수정</a>
+    </span>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ja.finalproject.user.mapper.UserSqlMapper">
+
+    <insert id="createUser">
+
+        INSERT INTO fp_user(user_id, password, nickname, email, gender, birth, phone)
+        VALUES(#{user_id}, #{password}, #{nickname}, #{email}, #{gender}, #{birth}, #{phone})
+
+    </insert>
+
+
+    <!-- select인 경우 꼭!!!! resultType 정의 -->
+    <select id="findByUserIdAndPassword" resultType="com.ja.finalproject.dto.UserDto">
+        SELECT * 
+        FROM fp_user fu 
+        WHERE fu.user_id = #{user_id} AND fu.password = #{password}
+    </select>
+
+    <select id="findById" resultType="com.ja.finalproject.dto.UserDto">
+        SELECT * FROM fp_user fu WHERE fu.id = #{id}
+    </select>
+
+</mapper>
